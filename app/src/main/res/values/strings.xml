@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">news</string>
+    <string name="mainright_logo">立刻登录</string>
+    <string name="mainright_set">版本更新</string>
+    <string name="maincenter_tle">资讯</string>
+    <string name="maincenter_js">军事</string>
+    <string name="maincenter_sh">社会</string>
+</resources>
