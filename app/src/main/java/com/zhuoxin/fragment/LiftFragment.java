@@ -3,17 +3,23 @@ package com.zhuoxin.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
+import com.zhuoxin.activity.MainActivity;
 import com.zhuoxin.news.R;
 
 /**
  * Created by admin on 2016/10/28.
  */
 
-public class LiftFragment extends Fragment {
+public class LiftFragment extends Fragment implements AdapterView.OnItemClickListener {
+    ListView mLst;
+
     //    开始创建Fragment
     @Nullable
     @Override
@@ -27,14 +33,23 @@ public class LiftFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        View viewById = view.findViewById(R.id.lst_mainleft_news);
+        mLst = (ListView) view.findViewById(R.id.lst_mainleft_news);
+        mLst.setOnItemClickListener(this);
     }
 
-    //这是当前fragment所在的Activity正式被创建时的方法
+
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        switch (position) {
+            case 0:
+                //        获取业务处理器
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragmlayout, new CenterFragment());
+//        提交后才能实现
+                transaction.commit();
+                MainActivity.close();
+
+                break;
+        }
     }
-
-
 }

@@ -1,32 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     tools:context="com.zhuoxin.activity.MainActivity">
 
-    <fragment
-        android:id="@+id/frag_chenter"
-        android:name="com.zhuoxin.fragment.CenterFragment"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="50dp"
+        android:background="@mipmap/btn_one"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <fragment
-        android:id="@+id/frag_lift"
-        android:name="com.zhuoxin.fragment.LiftFragment"
-        android:layout_width="200dp"
+        <TextView
+            android:id="@+id/txt_maincenter_home"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@mipmap/ic_title_home_default" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/maincenter_tle"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/txt_maincenter_share"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@mipmap/ic_title_share_default" />
+
+
+    </LinearLayout>
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="left" />
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/fragmlayout"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <fragment
+            android:id="@+id/frag_lift"
+            android:name="com.zhuoxin.fragment.LiftFragment"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left" />
 
 
-    <fragment
-        android:id="@+id/frag_right"
-        android:name="com.zhuoxin.fragment.RightFragment"
-        android:layout_width="200dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="right" />
+        <fragment
+            android:id="@+id/frag_right"
+            android:name="com.zhuoxin.fragment.RightFragment"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right" />
+    </android.support.v4.widget.DrawerLayout>
 
-
-</android.support.v4.widget.DrawerLayout>
+</LinearLayout>

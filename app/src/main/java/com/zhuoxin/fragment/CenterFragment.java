@@ -1,5 +1,6 @@
 package com.zhuoxin.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -8,9 +9,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.zhuoxin.activity.WebActivity;
 import com.zhuoxin.adapter.CenterAdapter;
 import com.zhuoxin.entity.PersonInfo;
 import com.zhuoxin.entity.Result;
@@ -29,12 +32,13 @@ import me.maxwin.view.XListView;
  * Created by admin on 2016/10/28.
  */
 
-public class CenterFragment extends Fragment implements OnLoadBitmapLister, XListView.IXListViewListener {
+public class CenterFragment extends Fragment implements OnLoadBitmapLister, XListView.IXListViewListener, AdapterView.OnItemClickListener {
 
     public static final String PATH = "http://118.244.212.82:9092/newsClient/news_list?ver=1&subid=1&dir=1&nid=1&stamp=20140321&cnt=20";
     XListView mXlst;
-    ArrayList<Result> mList = new ArrayList<>();
-    Handler handler;
+    static ArrayList<Result> mList = new ArrayList<>();
+    Handler mHandler;
+    CenterAdapter mAdapter;
 
     @Nullable
     @Override
@@ -70,11 +74,13 @@ public class CenterFragment extends Fragment implements OnLoadBitmapLister, XLis
         Log.e("--", "dui==" + personInfo.getMessage());
         Log.e("--", "dui==" + personInfo.getStatus());
         mList = personInfo.getData();
-        handler = new Handler();
-        CenterAdapter adapter = new CenterAdapter(getContext(), mList);
+        mHandler = new Handler();
+        mAdapter = new CenterAdapter(getContext(), mList);
         Log.e("--", "size==" + mList.size());
-        mXlst.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        mXlst.setAdapter(mAdapter);
+//        mXlst.setXListViewListener(this);
+        mXlst.setOnItemClickListener(this);
+        mAdapter.notifyDataSetChanged();
 //      必须设置两个方法
 //       上拉刷新
         mXlst.setPullLoadEnable(true);
@@ -88,7 +94,7 @@ public class CenterFragment extends Fragment implements OnLoadBitmapLister, XLis
     @Override
 //    下拉刷新
     public void onRefresh() {
-        handler.postDelayed(new Runnable() {
+        mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 stop();
@@ -99,7 +105,7 @@ public class CenterFragment extends Fragment implements OnLoadBitmapLister, XLis
     @Override
 //    上拉加载更多
     public void onLoadMore() {
-        handler.postDelayed(new Runnable() {
+        mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 stop();
@@ -114,5 +120,16 @@ public class CenterFragment extends Fragment implements OnLoadBitmapLister, XLis
 //        设置时间
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         mXlst.setRefreshTime(format.format(new Date(System.currentTimeMillis())));
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(getActivity(), WebActivity.class);
+        intent.putExtra("position", position);
+        startActivity(intent);
+    }
+
+    public static ArrayList<Result> getList() {
+        return mList;
     }
 }
