@@ -2,6 +2,8 @@ package com.zhuoxin.utlis;
 
 import android.os.AsyncTask;
 
+import com.zhuoxin.able.OnLoadBitmapLister;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;

@@ -18,7 +18,7 @@ import com.zhuoxin.adapter.CenterAdapter;
 import com.zhuoxin.entity.PersonInfo;
 import com.zhuoxin.entity.Result;
 import com.zhuoxin.news.R;
-import com.zhuoxin.utlis.OnLoadBitmapLister;
+import com.zhuoxin.able.OnLoadBitmapLister;
 import com.zhuoxin.utlis.Task;
 
 import java.lang.reflect.Type;
@@ -78,7 +78,7 @@ public class CenterFragment extends Fragment implements OnLoadBitmapLister, XLis
         mAdapter = new CenterAdapter(getContext(), mList);
         Log.e("--", "size==" + mList.size());
         mXlst.setAdapter(mAdapter);
-//        mXlst.setXListViewListener(this);
+
         mXlst.setOnItemClickListener(this);
         mAdapter.notifyDataSetChanged();
 //      必须设置两个方法
