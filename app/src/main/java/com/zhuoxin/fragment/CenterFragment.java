@@ -53,6 +53,7 @@ public class CenterFragment extends Fragment implements OnLoadBitmapLister, XLis
         initData();
 
 
+
     }
 
 

@@ -1,6 +1,7 @@
 package com.zhuoxin.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,8 @@ import java.util.ArrayList;
 public class CenterAdapter extends BaseAdapter {
     ArrayList<Result> mList;
     Context mContext;
+   CardView mCard;
+//    int [] mColor={R.color.colorAccent,R.color.colorPrimary};
 
     public CenterAdapter(Context mContext, ArrayList<Result> mList) {
         this.mList = mList;
@@ -54,6 +57,7 @@ public class CenterAdapter extends BaseAdapter {
             houdle.txt_one = (TextView) convertView.findViewById(R.id.txt_center_one);
             houdle.txt_two = (TextView) convertView.findViewById(R.id.txt_center_two);
             houdle.txt_three = (TextView) convertView.findViewById(R.id.txt_center_three);
+            houdle.cardView = (CardView) convertView.findViewById(R.id.crd);
             convertView.setTag(houdle);
         } else {
             houdle = (Houdle) convertView.getTag();
@@ -62,6 +66,7 @@ public class CenterAdapter extends BaseAdapter {
         houdle.txt_one.setText(mList.get(position).getTitle());
         houdle.txt_two.setText(mList.get(position).getSummary());
         houdle.txt_three.setText(mList.get(position).getStamp());
+//        houdle.cardView.setCardBackgroundColor(mColor[position%3]);
         Log.e("--", "size1==" + mList.size());
 
         return convertView;
@@ -73,6 +78,7 @@ public class CenterAdapter extends BaseAdapter {
         TextView txt_one;
         TextView txt_two;
         TextView txt_three;
+        CardView cardView;
     }
 
 }

@@ -32,4 +32,6 @@ dependencies {
     compile 'com.github.erd:android-volley:1.0.0'
     compile 'com.github.erd:android-volley:1.0.0'
     compile project(':slidingmenu')
+    compile 'com.android.support:cardview-v7:24.2.1'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
 }
