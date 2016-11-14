@@ -116,9 +116,6 @@ public class WebActivity extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.txt_web_back:
-//                Intent intent = new Intent(this, CenterFragment.class);
-//                startActivity(intent);
-
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
                 bundle.putInt("position", mPosition);
@@ -150,12 +147,12 @@ public class WebActivity extends AppCompatActivity implements View.OnClickListen
 
                 SqlUtils sqlUtils = new SqlUtils(this);
 
-                String summary = mList.get(mPosition ).getSummary();
-                String icon = mList.get(mPosition ).getIcon();
-                String stamp = mList.get(mPosition ).getStamp();
-                String title = mList.get(mPosition ).getTitle();
-                String nid = mList.get(mPosition ).getNid();
-                String link = mList.get(mPosition ).getLink();
+                String summary = mList.get(mPosition).getSummary();
+                String icon = mList.get(mPosition).getIcon();
+                String stamp = mList.get(mPosition).getStamp();
+                String title = mList.get(mPosition).getTitle();
+                String nid = mList.get(mPosition).getNid();
+                String link = mList.get(mPosition).getLink();
                 String type = mList.get(mPosition).getType();
                 for (int i = 0; i < sqlUtils.query().size(); i++) {
                     if (nid.equals(sqlUtils.query().get(i).getNid())) {

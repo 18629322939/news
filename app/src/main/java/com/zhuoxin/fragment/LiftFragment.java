@@ -1,5 +1,6 @@
 package com.zhuoxin.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.zhuoxin.activity.CameraActivity;
 import com.zhuoxin.activity.MainActivity;
 import com.zhuoxin.news.R;
 
@@ -55,6 +57,11 @@ public class LiftFragment extends Fragment implements AdapterView.OnItemClickLis
                 favorite.replace(R.id.fragmlayout, new FavoriteFragment());
                 favorite.commit();
                 MainActivity.close();
+                break;
+            case 2:
+                Intent intent = new Intent(getActivity(), CameraActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 }
