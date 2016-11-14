@@ -36,25 +36,29 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <ImageView
+        <TextView
+            android:id="@+id/txt_right_wx"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@mipmap/fun_share_weixin" />
+            android:background="@mipmap/fun_share_weixin" />
 
-        <ImageView
+        <TextView
+            android:id="@+id/txt_right_qq"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@mipmap/addimport_qq" />
+            android:background="@mipmap/addimport_qq" />
 
-        <ImageView
+        <TextView
+            android:id="@+id/txt_right_pyx"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@mipmap/fun_share_friends" />
+            android:background="@mipmap/fun_share_friends" />
 
-        <ImageView
+        <TextView
+            android:id="@+id/txt_right_wb"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@mipmap/fun_share_weibo" />
+            android:background="@mipmap/fun_share_weibo" />
 
     </LinearLayout>
 

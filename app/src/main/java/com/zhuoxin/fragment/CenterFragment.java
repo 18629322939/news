@@ -126,7 +126,7 @@ public class CenterFragment extends Fragment implements OnLoadBitmapLister, XLis
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(getActivity(), WebActivity.class);
-        intent.putExtra("position", position);
+        intent.putExtra("position", position-1);
         startActivity(intent);
     }
 

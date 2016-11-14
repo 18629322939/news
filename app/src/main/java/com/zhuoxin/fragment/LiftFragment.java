@@ -43,13 +43,18 @@ public class LiftFragment extends Fragment implements AdapterView.OnItemClickLis
         switch (position) {
             case 0:
                 //        获取业务处理器
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragmlayout, new CenterFragment());
+                FragmentTransaction center = getActivity().getSupportFragmentManager().beginTransaction();
+                center.replace(R.id.fragmlayout, new CenterFragment());
 //        提交后才能实现
-                transaction.commit();
+                center.commit();
                 MainActivity.close();
 
                 break;
+            case 1:
+                FragmentTransaction favorite = getActivity().getSupportFragmentManager().beginTransaction();
+                favorite.replace(R.id.fragmlayout, new FavoriteFragment());
+                favorite.commit();
+                MainActivity.close();
         }
     }
 }
