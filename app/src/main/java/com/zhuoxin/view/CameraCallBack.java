@@ -95,7 +95,7 @@ public class CameraCallBack implements SurfaceHolder.Callback {
 
             }
         });
-        mCamera.stopPreview();
+
     }
 
 

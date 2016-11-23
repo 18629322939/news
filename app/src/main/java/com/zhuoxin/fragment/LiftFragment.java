@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.zhuoxin.activity.CameraActivity;
+import com.zhuoxin.activity.FavoriteActivity;
 import com.zhuoxin.activity.MainActivity;
 import com.zhuoxin.news.R;
 
@@ -53,14 +54,13 @@ public class LiftFragment extends Fragment implements AdapterView.OnItemClickLis
 
                 break;
             case 1:
-                FragmentTransaction favorite = getActivity().getSupportFragmentManager().beginTransaction();
-                favorite.replace(R.id.fragmlayout, new FavoriteFragment());
-                favorite.commit();
-                MainActivity.close();
+                Intent favorite = new Intent(getActivity(), FavoriteActivity.class);
+                startActivity(favorite);
                 break;
+
             case 2:
-                Intent intent = new Intent(getActivity(), CameraActivity.class);
-                startActivity(intent);
+                Intent camera = new Intent(getActivity(), CameraActivity.class);
+                startActivity(camera);
                 break;
         }
     }

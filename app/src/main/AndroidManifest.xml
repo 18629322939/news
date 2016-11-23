@@ -43,8 +43,10 @@
         </activity>
         <activity android:name="com.zhuoxin.activity.GuidActivity" />
         <activity android:name="com.zhuoxin.activity.WebActivity" />
-        <activity android:name="com.zhuoxin.fragment.WebFavoriteActivity" />
+        <activity android:name="com.zhuoxin.activity.WebFavoriteActivity" />
         <activity android:name="com.zhuoxin.activity.CameraActivity" />
+        <activity android:name="com.zhuoxin.activity.FavoriteActivity" />
+        <activity android:name="com.zhuoxin.activity.CommentActivity" />
         <activity
             android:name="com.zhuoxin.activity.PhotoActivity"
             android:theme="@style/Theme.AppCompat.Dialog" />

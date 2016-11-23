@@ -1,4 +1,4 @@
-package com.zhuoxin.fragment;
+package com.zhuoxin.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

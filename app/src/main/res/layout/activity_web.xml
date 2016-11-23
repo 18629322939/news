@@ -30,9 +30,7 @@
             android:id="@+id/btn_web"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-
-            android:text="跟帖" />
+            android:layout_marginRight="20dp" />
 
         <ImageView
             android:id="@+id/img_web"

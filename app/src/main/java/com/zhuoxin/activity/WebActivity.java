@@ -1,6 +1,7 @@
 package com.zhuoxin.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,10 +18,18 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+import com.zhuoxin.able.OnLoadResponseListener;
 import com.zhuoxin.entity.Result;
 import com.zhuoxin.fragment.CenterFragment;
+import com.zhuoxin.httpinfo.HttpInfo;
 import com.zhuoxin.news.R;
+import com.zhuoxin.utlis.HttpUtils;
 import com.zhuoxin.utlis.SqlUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -31,7 +40,7 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
  * Created by admin on 2016/11/1.
  */
 
-public class WebActivity extends AppCompatActivity implements View.OnClickListener {
+public class WebActivity extends AppCompatActivity implements View.OnClickListener, OnLoadResponseListener {
     WebView mWeb;
     ArrayList<Result> mList = new ArrayList<>();
     int mPosition;
@@ -41,11 +50,17 @@ public class WebActivity extends AppCompatActivity implements View.OnClickListen
     PopupWindow mPopupWindow;
     TextView mFavorite;
     TextView mShare;
+    RequestQueue mQueue;
+    HttpUtils mHttpUtils;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
+        mHttpUtils = new HttpUtils();
+        mQueue = Volley.newRequestQueue(this);
+        mHttpUtils.conectionGet(HttpInfo.BASE_URI + HttpInfo.NUM + "ver=1&nid=" + mList.get(mPosition).getNid(), this, mQueue
+        );
         mImg_popu = (ImageView) findViewById(R.id.img_web);
         mTxt_back = (TextView) findViewById(R.id.txt_web_back);
         mBtn_gt = (Button) findViewById(R.id.btn_web);
@@ -110,6 +125,8 @@ public class WebActivity extends AppCompatActivity implements View.OnClickListen
                 return super.shouldOverrideUrlLoading(view, url);
             }
         });
+
+
     }
 
     @Override
@@ -167,6 +184,33 @@ public class WebActivity extends AppCompatActivity implements View.OnClickListen
 
                 break;
 
+            case R.id.btn_web:
+                Intent comment = new Intent(WebActivity.this, CommentActivity.class);
+                comment.putExtra("nid", mList.get(mPosition).getNid());
+                startActivity(comment);
+                break;
+
+        }
+
+
+    }
+
+    @Override
+    public void getResponse(String message) {
+        Log.e("---", "message" + message);
+
+        try {
+            SharedPreferences number = this.getSharedPreferences("number", MODE_PRIVATE);
+            SharedPreferences.Editor editor = number.edit();
+            JSONObject jsonObject = new JSONObject(message);
+            String s = jsonObject.getString("message");
+            int status = jsonObject.getInt("status");
+            int data = jsonObject.getInt("data");
+            editor.putInt("data", data);
+            editor.commit();
+            mBtn_gt.setText(data + "跟帖");
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
 
